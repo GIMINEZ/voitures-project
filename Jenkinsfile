@@ -8,17 +8,23 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh './mvnw clean install'
+                dir('voitures-backend') {       // ← se positionner dans le sous-dossier
+                    sh './mvnw clean install'
+                }
             }
         }
         stage('Test') {
             steps {
-                sh './mvnw test'
+                dir('voitures-backend') {
+                    sh './mvnw test'
+                }
             }
         }
         stage('Package') {
             steps {
-                sh './mvnw package'
+                dir('voitures-backend') {
+                    sh './mvnw package'
+                }
             }
         }
     }
