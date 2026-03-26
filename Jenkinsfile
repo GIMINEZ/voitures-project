@@ -3,25 +3,24 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/GIMINEZ/voitures-project.git'
+                git url: 'https://github.com/GIMINEZ/voitures-project.git', branch: 'main'
             }
         }
         stage('Build') {
             steps {
-                sh 'mvn clean install'
+                sh './mvnw clean install'
             }
         }
         stage('Test') {
             steps {
-                sh 'mvn test' 
+                sh './mvnw test'
             }
         }
         stage('Package') {
             steps {
-                sh 'mvn package' 
+                sh './mvnw package'
             }
         }
-        
     }
     post {
         success {
